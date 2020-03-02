@@ -1,21 +1,24 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Understanding extends Component {
   state = {
-    selectValue: null
+    selectValue: ""
   };
-
-  handleChange = () => {
+  handleChange = event => {
     this.setState({
-      selectValue: this.props.value
+      selectValue: event.target.value
     });
   };
-
   goToSupport = () => {
-    if (this.state.selectValue === null) {
+    if (this.state.selectValue === "") {
       alert("Please select a value!");
-    } else if (!this.state.selectValue) {
+    } else if (this.state.selectValue) {
       this.props.history.push("/Support");
+      this.props.dispatch({
+        type: "UNDERSTANDING",
+        payload: this.state.selectValue
+      });
     }
   };
   render() {
@@ -27,8 +30,8 @@ class Understanding extends Component {
             Understanding:
             <select
               required={true}
-              value={this.selectValue}
-              onChange={event => this.handleChange(event.target.value)}
+              value={this.state.selectValue}
+              onChange={this.handleChange}
             >
               <option>-- Select a Value --</option>
               <option value="1">1 - I don't know what's happening</option>
@@ -44,5 +47,7 @@ class Understanding extends Component {
     );
   }
 }
-
-export default Understanding;
+const getStore = reduxState => ({
+  reduxState
+});
+export default connect(getStore)(Understanding);

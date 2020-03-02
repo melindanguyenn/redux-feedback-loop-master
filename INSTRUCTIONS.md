@@ -1,4 +1,4 @@
-# Redux Feedback Loop
+<!-- # Redux Feedback Loop
 
 
 >Do not clone this repository. Instead, download the zip, extract the contents, create a new GitHub repository and `git init`, `git add .`, `git commit -m "initial commit - base project"` and add your remote. Please do this before you leave for the day.
@@ -53,7 +53,7 @@ The `Comments` step does not need to be validated, an empty value is okay.
 
 The last step of the process will allow the user to review their feedback. Users are not able to change their input on this step or go back for Base Mode. 
 
-![comments](wireframes/review-active.png)
+![comments](wireframes/review-active.png) -->
 
 ## SUBMIT THE FEEDBACK
 

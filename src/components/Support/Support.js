@@ -1,21 +1,24 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Support extends Component {
   state = {
-    selectValue: null
+    selectValue: ""
   };
-
-  handleChange = () => {
+  handleChange = event => {
     this.setState({
-      selectValue: this.props.value
+      selectValue: event.target.value
     });
   };
-
   goToComments = () => {
-    if (this.state.selectValue === null) {
+    if (this.state.selectValue === "") {
       alert("Please select a value!");
-    } else if (!this.state.selectValue) {
+    } else if (this.state.selectValue) {
       this.props.history.push("/Comments");
+      this.props.dispatch({
+        type: "SUPPORT",
+        payload: this.state.selectValue
+      });
     }
   };
   render() {
@@ -27,8 +30,8 @@ class Support extends Component {
             Support:
             <select
               required={true}
-              value={this.selectValue}
-              onChange={event => this.handleChange(event.target.value)}
+              value={this.state.selectValue}
+              onChange={this.handleChange}
             >
               <option>-- Select a Value --</option>
               <option value="1">1 - I feel abandoned</option>
@@ -44,5 +47,7 @@ class Support extends Component {
     );
   }
 }
-
-export default Support;
+const getStore = reduxState => ({
+  reduxState
+});
+export default connect(getStore)(Support);

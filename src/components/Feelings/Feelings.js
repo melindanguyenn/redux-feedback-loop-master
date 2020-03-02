@@ -1,25 +1,33 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Feelings extends Component {
   state = {
-    selectValue: null
+    selectValue: ""
   };
 
-  handleChange = () => {
+  //assigns event.target.value to selectValue
+  handleChange = event => {
     this.setState({
-      selectValue: this.props.value
+      selectValue: event.target.value
     });
   };
 
+  //if selectValue has no value, user cannor proceed to the next page
   goToUnderstanding = () => {
     //if state or prop is empty then return or show some sort of msg. then return
-    if (this.state.selectValue === null) {
+    if (this.state.selectValue === "") {
       alert("Please select a value!");
-    } else if (!this.state.selectValue) {
+    } else if (this.state.selectValue) {
       this.props.history.push("/Understanding");
+      this.props.dispatch({
+        type: "FEELINGS",
+        payload: this.state.selectValue
+      });
     }
   };
 
+  //first option has no value for validation
   render() {
     return (
       <div>
@@ -29,8 +37,8 @@ class Feelings extends Component {
             Feeling:
             <select
               required={true}
-              value={this.selectValue}
-              onChange={event => this.handleChange(event.target.value)}
+              value={this.state.selectValue}
+              onChange={this.handleChange}
             >
               <option> -- Select a Value -- </option>
               <option value="1">1 - Horrible</option>
@@ -46,5 +54,7 @@ class Feelings extends Component {
     );
   }
 }
-
-export default Feelings;
+const getStore = reduxState => ({
+  reduxState
+});
+export default connect(getStore)(Feelings);

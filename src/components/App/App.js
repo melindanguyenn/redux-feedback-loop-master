@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import axios from "axios";
 import "./App.css";
+import { connect } from "react-redux";
 import { HashRouter as Router, Route } from "react-router-dom";
 import Comments from "../Comments/Comments";
 import ConfirmSubmit from "../ConfirmSubmit/ConfirmSubmit";
@@ -21,16 +22,18 @@ class App extends Component {
             </h4>
           </header>
           <br />
+          <Route path="/Comments" component={Comments} />
+          <Route path="/ConfirmSubmit" component={ConfirmSubmit} />
+          <Route exact path="/" component={Feelings} />
+          <Route path="/Review" component={Review} />
+          <Route path="/Support" component={Support} />
+          <Route path="/Understanding" component={Understanding} />
         </div>
-        <Route path="/Comments" component={Comments} />
-        <Route path="/ConfirmSubmit" component={ConfirmSubmit} />
-        <Route exact path="/" component={Feelings} />
-        <Route path="/Review" component={Review} />
-        <Route path="/Support" component={Support} />
-        <Route path="/Understanding" component={Understanding} />
       </Router>
     );
   }
 }
-
-export default App;
+const getStore = reduxState => ({
+  reduxState
+});
+export default connect(getStore)(App);
