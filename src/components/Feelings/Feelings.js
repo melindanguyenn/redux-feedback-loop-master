@@ -14,7 +14,8 @@ class Feelings extends Component {
   };
 
   //if selectValue has no value, user cannor proceed to the next page
-  goToUnderstanding = () => {
+  goToUnderstanding = (event) => {
+    event.preventDefault()
     //if state or prop is empty then return or show some sort of msg. then return
     if (this.state.selectValue === "") {
       alert("Please select a value!");

@@ -10,7 +10,8 @@ class Understanding extends Component {
       selectValue: event.target.value
     });
   };
-  goToSupport = () => {
+  goToSupport = (event) => {
+    event.preventDefault()
     if (this.state.selectValue === "") {
       alert("Please select a value!");
     } else if (this.state.selectValue) {

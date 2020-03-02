@@ -10,7 +10,8 @@ class Support extends Component {
       selectValue: event.target.value
     });
   };
-  goToComments = () => {
+  goToComments = (event) => {
+    event.preventDefault()
     if (this.state.selectValue === "") {
       alert("Please select a value!");
     } else if (this.state.selectValue) {

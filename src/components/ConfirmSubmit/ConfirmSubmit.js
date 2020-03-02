@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class ConfirmSubmit extends Component {
   //function will return user to home page(feelings) on button click
-  goToFeelings = () => {
+  goToFeelings = (event) => {
+    event.preventDefault()
     this.props.history.push("/");
   };
   render() {

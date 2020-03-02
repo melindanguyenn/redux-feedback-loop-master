@@ -10,7 +10,8 @@ class Comments extends Component {
       comment: event.target.value
     });
   };
-  goToReview = () => {
+  goToReview = (event) => {
+    event.preventDefault()
     this.props.history.push("/Review");
     this.props.dispatch({
       type: "COMMENTS",

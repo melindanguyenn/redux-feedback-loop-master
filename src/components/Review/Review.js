@@ -27,7 +27,8 @@ class Review extends Component {
   }
 
   //POST route will add newFeedback to database
-  goToConfirmation = () => {
+  goToConfirmation = (event) => {
+    event.preventDefault()
     console.log('Feedback created',this.state.newFeedback);
     axios({
       method: 'POST',
