@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import axios from 'axios'
 
 class Review extends Component {
+
+  //creating state to send as data with POST
   state = {
     newFeedback: {
       feeling: this.props.reduxState.collectFeelings,
@@ -12,10 +14,7 @@ class Review extends Component {
   }
 }
 
-  componentDidMount = () => {
-  this.getFeedback()
-  }
-  
+  //GET route
   getFeedback = () => {
     axios({
       method: 'GET',
@@ -27,14 +26,14 @@ class Review extends Component {
     })
   }
 
-  goToConfirmation = (event) => {
-    console.log('adding feedback',this.state.newFeedback);
+  //POST route will add newFeedback to database
+  goToConfirmation = () => {
+    console.log('Feedback created',this.state.newFeedback);
     axios({
       method: 'POST',
       url: '/Review',
       data: this.state.newFeedback
     }).then((response) => {
-      console.log(response.data, 'from post');
       this.getFeedback()
     }).catch((error) => {
       console.log(error);
