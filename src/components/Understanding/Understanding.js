@@ -12,7 +12,7 @@ class Understanding extends Component {
   };
   goToSupport = (event) => {
     event.preventDefault()
-    if (this.state.selectValue === "") {
+    if (this.state.selectValue === "" || this.state.selectValue==="0") {
       alert("Please select a value!");
     } else if (this.state.selectValue) {
       this.props.history.push("/Support");
@@ -34,7 +34,7 @@ class Understanding extends Component {
               value={this.state.selectValue}
               onChange={this.handleChange}
             >
-              <option>-- Select a Value --</option>
+              <option value="0">-- Select a Value --</option>
               <option value="1">1 - I don't know what's happening</option>
               <option value="2">2 - I could use some guidence</option>
               <option value="3">3 - I understand this just enough</option>

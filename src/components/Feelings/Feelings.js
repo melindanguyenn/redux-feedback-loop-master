@@ -14,10 +14,11 @@ class Feelings extends Component {
   };
 
   //if selectValue has no value, user cannor proceed to the next page
-  goToUnderstanding = (event) => {
-    event.preventDefault()
+  goToUnderstanding = event => {
+    event.preventDefault();
+    const temp = this.state.selectValue;
     //if state or prop is empty then return or show some sort of msg. then return
-    if (this.state.selectValue === "") {
+    if (this.state.selectValue === "" || this.state.selectValue==="0") {
       alert("Please select a value!");
     } else if (this.state.selectValue) {
       this.props.history.push("/Understanding");
@@ -41,7 +42,7 @@ class Feelings extends Component {
               value={this.state.selectValue}
               onChange={this.handleChange}
             >
-              <option> -- Select a Value -- </option>
+              <option value="0">-- Select a Value --</option>
               <option value="1">1 - Horrible</option>
               <option value="2">2 - Not Too Good</option>
               <option value="3">3 - Okay</option>
@@ -49,6 +50,10 @@ class Feelings extends Component {
               <option value="5">5 - Great</option>
             </select>
           </label>
+          {/* {this.state.selectValue === "" || this.state.selectValue === 0
+            ?  <><br></br><span>Please select an value</span></>
+            :<button type="submit">Next</button>
+          } */}
           <input type="submit" value="Next" />
         </form>
       </div>

@@ -12,7 +12,7 @@ class Support extends Component {
   };
   goToComments = (event) => {
     event.preventDefault()
-    if (this.state.selectValue === "") {
+    if (this.state.selectValue === "" || this.state.selectValue==="0") {
       alert("Please select a value!");
     } else if (this.state.selectValue) {
       this.props.history.push("/Comments");
@@ -34,7 +34,7 @@ class Support extends Component {
               value={this.state.selectValue}
               onChange={this.handleChange}
             >
-              <option>-- Select a Value --</option>
+              <option value="0">-- Select a Value --</option>
               <option value="1">1 - I feel abandoned</option>
               <option value="2">2 - I don't feel very supported</option>
               <option value="3">3 - I feel supported</option>
